@@ -50,6 +50,22 @@
                 
                 <section data-markdown>
                     <script type="text/template">
+                        ## Overview
+                        
+                        * What?
+                        * Why?
+                        * How?
+                    </script>
+                </section>
+                
+                <section data-markdown>
+                    <script type="text/template">
+                        ## What?
+                    </script>
+                </section>
+                
+                <section data-markdown>
+                    <script type="text/template">
                         # What is a Function?
                     </script>
                 </section>
@@ -112,6 +128,32 @@
                 
                 <section data-markdown>
                     <script type="text/template">
+                        ## Why?
+                    </script>
+                </section>
+                
+                <section data-markdown>
+                    <script type="text/template">
+                        ### Why Functional Programming?
+                        
+                        <ul>
+                            <li class="fragment">Simple</li>
+                            <li class="fragment">Testable</li>
+                            <li class="fragment">Scalable</li>
+                            <li class="fragment">Reusable</li>
+                            <li class="fragment">Optimizable</li>
+                        </ul>
+                    </script>
+                </section>
+                
+                <section data-markdown>
+                    <script type="text/template">
+                        ## How?
+                    </script>
+                </section>
+                
+                <section data-markdown>
+                    <script type="text/template">
                         ## Functions Treated as First-Class Citizens
                     </script>
                 </section>
@@ -132,6 +174,9 @@
 var double = function(x) {
   x * 2;
 };
+
+double(5);
+// 10
 					</code></pre>
 				</section>
                 
@@ -165,15 +210,6 @@ double(5);
                 
                 <section data-markdown>
                     <script type="text/template">
-                        ### Higher-Order Functions
-                        
-                        * Takes another function as input
-                        * Returns a function as result
-                    </script>
-                </section>
-                
-                <section data-markdown>
-                    <script type="text/template">
                         ## Purity
                     </script>
                 </section>
@@ -190,6 +226,12 @@ double(5);
                     </script>
                 </section>
                 
+                <section data-markdown>
+                    <script type="text/template">
+                        ## What does a Pure Function look like?
+                    </script>
+                </section>
+                
                 <section>
 					<h2>Pure or Impure?</h2>
 					<pre><code class="hljs" data-trim contenteditable>
@@ -202,6 +244,9 @@ var Greeter = (function () {
     };
     return Greeter;
 }());
+
+var greeter = new Greeter("world");
+greeter.greet();
 					</code></pre>
 				</section>
                 
@@ -234,7 +279,7 @@ greeter.greet();
 ```
 public IEnumerable<Person> GetOldPeople(IEnumerable<Person> people)
 {
-    return people.Where(p => p.Age > 30);
+    return people.Where(p => p.Age >= 30);
 }
 ```
                     </script>
@@ -247,7 +292,7 @@ public IEnumerable<Person> GetOldPeople(IEnumerable<Person> people)
 public IEnumerable<Person> GetOldPeople(IEnumerable<Person> people)
 {
     // Original "people" list not modified by Where function...
-    return people.Where(p => p.Age > 30);
+    return people.Where(p => p.Age >= 30);
 }
 ```
 					</script>
@@ -261,50 +306,24 @@ let FizzBuzz input =
     | i when i % 3 = 0 && i % 5 = 0 -> "FizzBuzz"
     | i when i % 3 = 0 -> "Fizz"
     | i when i % 5 = 0 -> "Buzz"
-    | i -> string i
+    | i -> printfn "%A" i; string i
 					</code></pre>
 				</section>
                 
                 <section>
-					<h2>Pure!</h2>
+					<h2>Impure!</h2>
 					<pre><code class="hljs" data-trim contenteditable>
-// No side-effects here...
 let FizzBuzz input =
     match input with
     | i when i % 3 = 0 && i % 5 = 0 -> "FizzBuzz"
     | i when i % 3 = 0 -> "Fizz"
     | i when i % 5 = 0 -> "Buzz"
-    | i -> string i
+    | i -> printfn "%A" i; string i
+    
+FizzBuzz 23
+// Prints "23" to console...
 					</code></pre>
 				</section>
-                
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Why Purity?
-                    </script>
-                </section>
-                
-                <section data-markdown>
-                    <script type="text/template">
-                        ### Benefits:
-                        
-                        <ul>
-                            <li class="fragment">Cacheable Results</li>
-                            <ul class="fragment">
-                                <li>Memoization</li>
-                            </ul>
-                            <li class="fragment">Referential Transparency
-                            <li class="fragment">Self-Documenting
-                            <li class="fragment">Testable
-                            <li class="fragment">Easy to Reason About</li>
-                            <ul class="fragment">
-                                <li>No temporal coupling</li>
-                            </ul>
-                            <li class="fragment">Parallelizable
-                        </ul>
-
-                    </script>
-                </section>
                 
                 <section data-markdown>
                     <script type="text/template">
@@ -326,7 +345,7 @@ let FizzBuzz input =
                 <section>
 					<h3>Example</h3>
 					<pre><code class="hljs" data-trim contenteditable>
-// Computes the sum of a list of integers using recursion...
+// sumList :: [int] -> int
 let rec sumList xs =
     match xs with
     | []    -> 0
@@ -336,12 +355,17 @@ let rec sumList xs =
                 
                 <section data-markdown>
                     <script type="text/template">
+                        ## Currying
+                    </script>
+                </section>
+                
+                <section data-markdown>
+                    <script type="text/template">
                         ### Currying
                         
                         - Call function with a subset of parameters
                         - Receive new function expecting the rest of the parameters
                           - Provided parameters captured in closure
-                        - Also known as partial application
                     </script>
                 </section>
                 
@@ -391,6 +415,25 @@ let add5 = add 5
 let answer = add5 2
 					</code></pre>
 				</section>
+                
+                <section data-markdown>
+                    <script type="text/template">
+                        ### Why Curry?
+                        
+                        - Allows us to construct functions with 1 input parameter
+                        - Equivalent to composition in OO
+                        - Removes reliance on external state
+                    </script>
+                </section>
+                
+                <section data-markdown>
+                    <script type="text/template">
+                        ### Further Learning
+                        
+                        * FP Dojo
+                        * `functional_code` slack channel
+                    </script>
+                </section>
                 
                 <section data-markdown>
                     <script type="text/template">
