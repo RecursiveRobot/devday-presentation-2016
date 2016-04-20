@@ -61,12 +61,12 @@
                 <section data-markdown>
                     <script type="text/template">
                         ## What?
-                    </script>
-                </section>
-                
-                <section data-markdown>
-                    <script type="text/template">
-                        # What is a Function?
+                        
+                        Functional Programming
+                        
+                        Note:
+                        - 2 Parts : FUNCTIONAL and PROGRAMMING
+                        - Let's look at what a FUNCTION is first
                     </script>
                 </section>
                 
@@ -79,6 +79,10 @@
                         > A function is a special relationship between values:
                         
                         > Each of its input values gives back exactly one output value.
+                        
+                        Note:
+                        - If you think back to high school, you may remember a definition like this
+                        - 1 input, 1 output
                     </script>
                 </section>
                 
@@ -88,7 +92,7 @@
                     
                         <img src="images/function-sets.gif" />
                         
-                        <small>[Source](http://www.mathsisfun.com/sets/function.html)</small>
+                        <small>[mathisfun.com](http://www.mathsisfun.com/sets/function.html)</small>
                     </script>
                 </section>
                 
@@ -98,7 +102,7 @@
                     
                         <img src="images/relation-not-function.gif" />
                         
-                        <small>[Source](http://www.mathsisfun.com/sets/function.html)</small>
+                        <small>[mathisfun.com](http://www.mathsisfun.com/sets/function.html)</small>
                     </script>
                 </section>
                 
@@ -108,7 +112,7 @@
                     
                         <img src="images/vertical-line-test.gif" />
                         
-                        <small>[Source](http://www.mathsisfun.com/sets/function.html)</small>
+                        <small>[mathisfun.com](http://www.mathsisfun.com/sets/function.html)</small>
                     </script>
                 </section>
                 
@@ -143,18 +147,26 @@
                             <li class="fragment">Reusable</li>
                             <li class="fragment">Optimizable</li>
                         </ul>
+                        
+                        Note:
+                        - Simple : Declarative style is simpler to write and easier to reason about.
+                        - Testable : No reliance on external state means no mocking and stubbing.  Simply pass in all required parameters and check output.
+                        - Scalable : Since each function executes in isolation and has no side-effects, they are inherently parallelizable.
+                        - Reusable : Functions become building blocks of bigger functions.
+                        - Optimizable : Results of pure functions can be cached. Pure functions are referentially transparent, can be replaced with their result by compiler.  No temporal coupling means functions can be evaluated lazily.
                     </script>
+                    
+                    <aside class="notes">
+                        
+                    </aside>
                 </section>
                 
                 <section data-markdown>
                     <script type="text/template">
                         ## How?
-                    </script>
-                </section>
-                
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Functions Treated as First-Class Citizens
+                        
+                        Note:
+                        -  Firstly, you'll need a programming language that treats functions as first-class citizens
                     </script>
                 </section>
 
@@ -194,9 +206,10 @@ apply(double, 5);
 					</code></pre>
 				</section>
                 
-                <section>
-					<h3>Function as Result</h3>
-					<pre><code class="hljs" data-trim contenteditable>
+                <section data-markdown>
+                    <script type="text/template">
+                    ### Function as Result
+```
 var getDoubleFunction = function() {
   return x => x * 2;
 };
@@ -205,14 +218,12 @@ var double = getDoubleFunction();
 
 double(5);
 // 10
-					</code></pre>
+```
+
+                    Note:
+                    - The second essential building block of FP is pure functions
+					</script>
 				</section>
-                
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Purity
-                    </script>
-                </section>
                 
                 <section data-markdown>
                     <script type="text/template">
@@ -223,12 +234,17 @@ double(5);
                         - Given the same input, always produces the same output
                           - f(x) === f(x)
                         - No temporal coupling
+                        
+                        Note:
+                        - This is exactly what we discussed early during definition of a function
+                        - Pure function = mathematical concept of function
+                        - This is very important, since this means we can apply mathematical rules to them
                     </script>
                 </section>
                 
                 <section data-markdown>
                     <script type="text/template">
-                        ## What does a Pure Function look like?
+                        ## Let's look at some examples
                     </script>
                 </section>
                 
@@ -327,18 +343,17 @@ FizzBuzz 23
                 
                 <section data-markdown>
                     <script type="text/template">
-                        ## Immutable Data Structures
-                    </script>
-                </section>
-                
-                <section data-markdown>
-                    <script type="text/template">
                         ### Immutable Data Structures
                         
                         - Cannot be modified
                         - New instance has to be created with new value
                         - Helps to keep functions pure
                         - Recursion over iteration
+                        
+                        Note:
+                        - FP languages have immutable DS as default
+                        - Provides first-class support
+                        - Other languages provide libraries to help, but discipline still required
                     </script>
                 </section>
                 
@@ -352,12 +367,6 @@ let rec sumList xs =
     | y::ys -> y + sumList ys
 					</code></pre>
 				</section>
-                
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Currying
-                    </script>
-                </section>
                 
                 <section data-markdown>
                     <script type="text/template">
@@ -421,7 +430,7 @@ let answer = add5 2
                         ### Why Curry?
                         
                         - Allows us to construct functions with 1 input parameter
-                        - Equivalent to composition in OO
+                        - Roughly equivalent to dependency injection in OO
                         - Removes reliance on external state
                     </script>
                 </section>
@@ -431,7 +440,7 @@ let answer = add5 2
                         ### Further Learning
                         
                         * FP Dojo
-                        * `functional_code` slack channel
+                        * `#functional_code` slack channel
                     </script>
                 </section>
                 
