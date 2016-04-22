@@ -172,7 +172,7 @@
 
                 <section data-markdown>
                     <script type="text/template">
-                        ### First-Class Functions
+                        ### 1. First-Class Functions
                         
                         * Can be stored in variables
                         * Can be passed in as parameters to other functions
@@ -195,11 +195,11 @@ double(5);
                 <section>
 					<h3>Function as Parameter</h3>
 					<pre><code class="hljs" data-trim contenteditable>
-var double = x => x * 2;
-
 function apply(func, value) {
   return func(value);
 };
+
+var double = x => x * 2;
 
 apply(double, 5);
 // 10
@@ -227,7 +227,7 @@ double(5);
                 
                 <section data-markdown>
                     <script type="text/template">
-                        ### Pure Functions
+                        ### 2. Pure Functions
                         
                         - No dependency on external state
                         - No side-effects
@@ -307,7 +307,7 @@ public IEnumerable<Person> GetOldPeople(IEnumerable<Person> people)
 ```
 public IEnumerable<Person> GetOldPeople(IEnumerable<Person> people)
 {
-    // Original "people" list not modified by Where function...
+    // 'Original "people" list not modified by Where function...'
     return people.Where(p => p.Age >= 30);
 }
 ```
@@ -343,14 +343,16 @@ FizzBuzz 23
                 
                 <section data-markdown>
                     <script type="text/template">
-                        ### Immutable Data Structures
+                        ### 3. Immutable Data Structures
                         
                         - Cannot be modified
                         - New instance has to be created with new value
-                        - Helps to keep functions pure
+                        - Eliminates temporal coupling within function scope
+                        - Facilitates safe multi-threading
                         - Recursion over iteration
                         
                         Note:
+                        - Traditional OO languages pass objects by ref - temporal coupling still exists within function scope
                         - FP languages have immutable DS as default
                         - Provides first-class support
                         - Other languages provide libraries to help, but discipline still required
@@ -370,7 +372,7 @@ let rec sumList xs =
                 
                 <section data-markdown>
                     <script type="text/template">
-                        ### Currying (Partial Application)
+                        ### 4. Currying (Partial Application)
                         
                         - Call function with a subset of parameters
                         - Receive new function expecting the rest of the parameters
@@ -379,7 +381,7 @@ let rec sumList xs =
                 </section>
                 
                 <section>
-					<h3>Addition</h3>
+					<h3>Uncurried</h3>
 					<pre><code class="hljs" data-trim contenteditable>
 // Uncurried..
 function add(a, b) {
@@ -392,7 +394,7 @@ var c = add(1, 2);
 				</section>
                 
                 <section>
-					<h3>Addition</h3>
+					<h3>Curried</h3>
 					<pre><code class="hljs" data-trim contenteditable>
 // Curried...
 function addCurried(a) {
@@ -432,6 +434,7 @@ let answer = add5 2
                         - Allows us to construct functions with 1 input parameter
                         - Roughly equivalent to dependency injection in OO
                         - Removes reliance on external state
+                        - Pre-populate shared values
                     </script>
                 </section>
                 
